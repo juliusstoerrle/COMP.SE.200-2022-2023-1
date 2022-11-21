@@ -16,4 +16,11 @@ describe('Test suite for "add"-function', () => {
     it('Should return -37.45 on input 3.45 and -40', () => {
         expect(add(3.45, -40)).toBe(-36.55)
     })
+    it('Should return 0 when MAX SAFE INTEGER (MSI) subtracted from another MSI', () => {
+        expect(add(Number.MAX_SAFE_INTEGER, -9007199254740991)).toBe(0)
+    })
+    it('Should return MSI', () => {
+        const firstHalf = (9007199254740991 - 1) / 2
+        expect(add(firstHalf * 2, 1)).toBe(Number.MAX_SAFE_INTEGER)
+    })
 });

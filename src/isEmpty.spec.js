@@ -44,4 +44,38 @@ describe('Test suite for "isEmpty" function', () => {
     expect(isEmpty(true)).toBe(true);
   });
 
+  describe('Test for Map and Set collections', () => {
+    const sampleSet = new Set()
+    const sampleMap = new Map()
+    sampleMap.set('a', 'a1')
+    sampleMap.set('b', 'b1')
+
+    sampleSet.add(1)
+    sampleSet.add('a')
+    it('Should return false on non-empty Set', () => {
+      expect(isEmpty(sampleSet)).toBe(false)
+    })
+    it('Should return true on empty Set', () => {
+      sampleSet.clear()
+      expect(isEmpty(sampleSet)).toBe(true)
+    })
+    it('Should return false for non-empty Map', () => {
+      expect(isEmpty(sampleMap)).toBe(false)
+    })
+    it('Should return true for empty Map', () => {
+      sampleMap.clear()
+      expect(isEmpty(sampleMap)).toBe(true)
+    })
+
+  })
+  describe('Prototype tests', () => {
+    function Foo() { }
+    function Bar() { }
+    Bar.prototype = Object.create(Foo.prototype)
+    it('Should return false on empty prototype', () => {
+      expect(isEmpty(new Bar())).toBe(false)
+    })
+  });
+
+
 })
