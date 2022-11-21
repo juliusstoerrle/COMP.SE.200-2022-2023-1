@@ -72,8 +72,8 @@ describe('Test suite for "isEmpty" function', () => {
     function Foo() { }
     function Bar() { }
     Bar.prototype = Object.create(Foo.prototype)
-    it('Should return false on empty prototype', () => {
-      expect(isEmpty(new Bar())).toBe(false)
+    it('Should return on prototype', () => {
+      expect(isEmpty(new Bar())).toBe(true)
     })
   });
 
