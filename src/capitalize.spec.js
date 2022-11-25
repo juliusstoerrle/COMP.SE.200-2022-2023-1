@@ -1,12 +1,17 @@
 import capitalize from "./capitalize"
 
 
-describe('Test suite for "capitalize" funtion', () => {
+describe('capitalize', () => {
     it('Should convert "hello" to "Hello"', () => { expect(capitalize('hello')).toBe('Hello') })
+    it('Should capitalize scandinavian letters', () => {
+        expect(capitalize('ääkkönen')).toBe('Ääkkönen')
+        expect(capitalize('ökytalo')).toBe('Ökytalo')
+        expect(capitalize('öljynkerÄysAlus')).toBe('Öljynkeräysalus')
+    })
     it('Should apply only to first word if passed several words', () => {
         expect(capitalize('several words written')).toBe('Several words written')
     })
-    describe('Testing string with non-letter characters', () => {
+    describe('Strings starting with with special characters', () => {
         it('Should leave "-hello" as without changing"', () => {
             expect(capitalize('-hello')).toBe('-hello')
         })

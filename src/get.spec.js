@@ -2,7 +2,7 @@ import get from './get'
 // The get function shall be tested to ensure different levels (1,2,3) and 
 // kind (array, object) property paths return the designated property. 
 
-describe('Testing suite for "get"-function', () => {
+describe('get', () => {
     describe('Simple object tests', () => {
         const obj = { a: 1, b: 3 }
         it('Should return value on corresponing key', () => {
@@ -36,7 +36,7 @@ describe('Testing suite for "get"-function', () => {
         const complexObj = {
             str: 'simple string',
             nmbr: 2,
-            nestedObj1: { a: 'a', b: 'b' },
+            nestedObj1: { nObjArr: ['a', 'b'], a: 'a', b: 'b' },
             arr1: [1, 2, 3],
             arr2: [{ a: 1, b: 2 }],
             nestedObj2: { obj: { a: 'a', b: 'b' }, arr: [1, 2, 3] }
@@ -61,6 +61,9 @@ describe('Testing suite for "get"-function', () => {
         })
         it('Should return \'null\' on path \'nestedObj2.arr[3]\'', () => {
             expect(get(complexObj, 'nestedObj2.arr[3]', null)).toBe(null)
+        })
+        it('Should return \'a\' on path \'nestedObj1.nObjArr[0]\'', () => {
+            expect(get(complexObj, 'nestedObj1.nObjArr[0]')).toBe('a')
         })
     })
 })

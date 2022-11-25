@@ -3,7 +3,7 @@ import isEmpty from './isEmpty';
 // objects, collection, map, or set each of which shall return true 
 // if size or length respectively return 0 or contain no properties.  
 
-describe('Test suite for "isEmpty" function', () => {
+describe('isEmpty', () => {
   it('Should return true for null - value', () => {
     expect(isEmpty(null)).toBe(true);
   });
@@ -44,7 +44,7 @@ describe('Test suite for "isEmpty" function', () => {
     expect(isEmpty(true)).toBe(true);
   });
 
-  describe('Test for Map and Set collections', () => {
+  describe('Map and Set collections', () => {
     const sampleSet = new Set()
     const sampleMap = new Map()
     sampleMap.set('a', 'a1')
@@ -56,24 +56,29 @@ describe('Test suite for "isEmpty" function', () => {
       expect(isEmpty(sampleSet)).toBe(false)
     })
     it('Should return true on empty Set', () => {
-      sampleSet.clear()
-      expect(isEmpty(sampleSet)).toBe(true)
+      const emptySet = sampleSet.clear()
+      expect(isEmpty(emptySet)).toBe(true)
     })
     it('Should return false for non-empty Map', () => {
       expect(isEmpty(sampleMap)).toBe(false)
     })
     it('Should return true for empty Map', () => {
-      sampleMap.clear()
-      expect(isEmpty(sampleMap)).toBe(true)
+      const emptyMap = sampleMap.clear()
+      expect(isEmpty(emptyMap)).toBe(true)
     })
 
   })
-  describe('Prototype tests', () => {
+  describe('on object/prototype values', () => {
     function Foo() { }
     function Bar() { }
+    function Bar1() { return ['a'] }
     Bar.prototype = Object.create(Foo.prototype)
+    Bar.prototype = Object.create(Bar1.prototype)
     it('Should return on prototype', () => {
       expect(isEmpty(new Bar())).toBe(true)
+    })
+    it('Should return on prototype', () => {
+      expect(isEmpty(new Bar1())).toBe(false)
     })
   });
 
