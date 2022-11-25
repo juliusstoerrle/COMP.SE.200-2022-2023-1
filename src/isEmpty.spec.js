@@ -74,7 +74,7 @@ describe('isEmpty', () => {
     function Bar1() { return ['a'] }
     Bar.prototype = Object.create(Foo.prototype)
     Bar.prototype = Object.create(Bar1.prototype)
-    it('Should return on prototype', () => {
+    it('should return true when the object is empty', () => {
       expect(isEmpty(new Bar())).toBe(true)
     })
     it('Should return on prototype', () => {
