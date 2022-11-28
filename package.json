@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "test-cov": "jest --collectCoverage --ci"
+    "test-cov": "jest --collectCoverage",
+    "test-ci": "jest --collectCoverage --ci"
   },
   "author": "",
   "license": "MIT",
