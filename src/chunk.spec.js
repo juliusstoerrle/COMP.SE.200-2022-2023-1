@@ -6,10 +6,19 @@ import chunk from './chunk'
 describe('chunk', () => {
     describe('Test simple array', () => {
         it("Should return [['a', 'b'], ['c', 'd']], on input (['a','b', 'c','d'], 2)", () => {
-            expect(chunk(['a', 'b', 'c', 'd'], 2)).toBe([['a', 'b'], ['c', 'd']])
+            expect(chunk(['a', 'b', 'c', 'd'], 2)).toStrictEqual([['a', 'b'], ['c', 'd']])
         })
         it("Should return [[1, 2], [3, 4]], on input ([1,2,3,4], 2)", () => {
-            expect(chunk([1, 2, 3, 4], 2)).toBe([[1, 2], [3, 4]])
+            expect(chunk([1, 2, 3, 4], 2)).toStrictEqual([[1, 2], [3, 4]])
         })
+        it(`On empty array should return empty array`, () => {
+            expect(chunk([], 2)).toStrictEqual([])
+        })
+    })
+    describe('Test string', () => {
+        it(`On string 'abcdefg' and delimeter 3 should return ['a','b','c'],['d','e','f'],['g']]`, () => {
+            expect(chunk('abcdefg', 3)).toStrictEqual(['a', 'b', 'c'], ['d', 'e', 'f'], ['g'])
+        })
+
     })
 });
