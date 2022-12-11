@@ -7,6 +7,9 @@ describe('isEmpty', () => {
   it('Should return true for null - value', () => {
     expect(isEmpty(null)).toBe(true);
   });
+  it('Should return true for number 3', () => {
+    expect(isEmpty(3)).toBe(true);
+  });
   it('Should return true for empty string', () => {
     expect(isEmpty('')).toBe(true);
   });
