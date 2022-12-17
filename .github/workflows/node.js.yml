@@ -20,7 +20,7 @@ jobs:
     # production code and facilitates preparing the library for new versions.
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [14.x, 16.x, 18.x, 19.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         # this should include all supported versions
 
