@@ -1,8 +1,10 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
+# This file defines the Continous Integration pipeline for node.js based projects in this repository.
 name: Node.js CI
 
+# It is executed for all new commits pushed to the main banch as well as changes to main being prepared in pull requests on GitHub.
 on:
   push:
     branches: [ "main" ]
@@ -10,37 +12,46 @@ on:
     branches: [ "main" ]
 
 jobs:
+  # this defines a test job, which includes all steps needed to run the javascript tests
   test:
     runs-on: ubuntu-latest
+    # Instead of simply running with one node.js versions we execute the tests on multiple 
+    # versions. This ensures compatibility with older versions which may still be used in 
+    # production code and facilitates preparing the library for new versions.
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        # this should include all supported versions
 
+    # each of the items in this list is executed in order:
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3 # get the code
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v3 # setup node.js on the respective version
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run test-ci
-    - name: Coveralls
+    - run: npm ci # install dependencies as defined in logfile
+    - run: npm run test-ci # run the tests optimized for ci-usage, includes codecoverage generation
+    - name: Coveralls # upload results to coveralls
       if: always()
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         flag-name: ${{matrix.os}}-node-${{ matrix.node }}
-        parallel: true
+        parallel: true # due to the matrix strategy, multiple reports are generated in parallel.
   
+  # when running multile jobs supplying code coverage information for the same 
+  # commit in parallel, coveralls must be notiffied once all tests are finished.
+  # The finish job does this:
   finish:
-    needs: test
-    if: always()
+    needs: test  # wait for all tests to finish 
+    if: always() # this should also run if tests failed
     runs-on: ubuntu-latest
     steps:
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+          parallel-finished: true # notify about finishing parallel tests
