@@ -1,4 +1,4 @@
-import filter from './filter';
+import filter from '../src/filter';
 
 // The function filter should be tested to ensure the callback 
 // receives the correct input values, all elements are visited 

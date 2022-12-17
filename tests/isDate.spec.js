@@ -11,7 +11,7 @@ beforeEach(() => {
 // As tests are generally executed in node.js, the node helpers need
 // to be removed to test the browser side test path.
 function mockNodeTypes() {
-  jest.doMock('./.internal/nodeTypes.js', () => {
+  jest.doMock('../src/.internal/nodeTypes.js', () => {
     return {
       __esModule: true,
       isDate: false,
@@ -26,31 +26,31 @@ describe('isDate', function() {
     // the projects standard
 
     it('accepts Date object', () => {
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default(new Date())).toBe(true);
       });
     });
 
     it('accepts Date object with lower boundary', () => {
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default(new Date(Date.UTC(1970,1,1,0,0,0,0)))).toBe(true);
       });
     });
 
     it('returns false on null', () => {
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default(null)).toBe(false);
       });
     });
 
     it('returns false on date string', () => {
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default('2022-10-18')).toBe(false);
       });
     });
 
     it('returns false on unrelated object', () => {
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default({value:'2022-10-18'})).toBe(false);
       });
     });
@@ -61,32 +61,32 @@ describe('isDate', function() {
     
     it('accepts Date object', () => {
       mockNodeTypes();
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default(new Date())).toBe(true);
       });
     });
 
     it('accepts Date object with lower boundary', () => {
       mockNodeTypes();
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default(new Date(Date.UTC(1970,1,1,0,0,0,0)))).toBe(true);
       });
     });
     
     it('returns false on null', () => {
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default(null)).toBe(false);
       });
     });
 
     it('returns false on date string', () => {
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default('2022-10-18')).toBe(false);
       });
     });
 
     it('returns false on unrelated object', () => {
-      return import('./isDate').then(isDate => {
+      return import('../src/isDate').then(isDate => {
         expect(isDate.default({value:'2022-10-18'})).toBe(false);
       });
     });

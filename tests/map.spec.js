@@ -1,4 +1,4 @@
-import map from './map';
+import map from '../src/map';
 
 // The map function must be tested to ensure all values are passed to the 
 // callback function and all the returned values are returned in one array.

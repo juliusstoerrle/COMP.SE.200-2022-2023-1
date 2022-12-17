@@ -1,4 +1,4 @@
-import chunk from './chunk'
+import chunk from '../src/chunk'
 
 // The chunk function should be tested to ensure all elements 
 // of the original array are returned in correctly sized chunks. 

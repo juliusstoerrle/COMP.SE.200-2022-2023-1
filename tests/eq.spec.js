@@ -1,4 +1,4 @@
-import eq from './eq';
+import eq from '../src/eq';
 
 // The eq functions test should include tests for different parameter combinations 
 // (Objects, Numbers, Booleans, Strings) ensuring a correct SameValueZero com-parison.

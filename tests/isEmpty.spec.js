@@ -1,4 +1,4 @@
-import isEmpty from './isEmpty';
+import isEmpty from '../src/isEmpty';
 // The tests for the isEmpty function must include checks for null, 
 // objects, collection, map, or set each of which shall return true 
 // if size or length respectively return 0 or contain no properties.  

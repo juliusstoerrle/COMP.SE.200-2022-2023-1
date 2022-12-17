@@ -1,4 +1,4 @@
-import memoize from './memoize';
+import memoize from '../src/memoize';
 
 // The memoize function should be tested to ensure that un-changed inputs
 // do not retrigger a new execution of the inner function and the correct 
@@ -34,13 +34,12 @@ describe('memoize', function() {
     expect(fn(235)).toBe(55225);
     expect(wrappedFn).toHaveBeenCalledTimes(2);
   });
-  // TODO missing error case, replace cache implementation
 
   describe('throws when', () => {
     it('no function was provided', () => {
       expect(() => memoize('')).toThrow();
     })
-    
+
     it('non callable value provided as resolver', () => {
       expect(() => memoize(() => null, '')).toThrow();
     })

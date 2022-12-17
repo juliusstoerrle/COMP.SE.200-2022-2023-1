@@ -1,4 +1,4 @@
-import add from "./add"
+import add from "../src/add"
 
 // The add function should be tested to ensure that the addition of the provided integers & 
 // floating-point numbers provides the mathematically correct result. 

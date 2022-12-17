@@ -1,4 +1,4 @@
-import get from './get'
+import get from '../src/get'
 // The get function shall be tested to ensure different levels (1,2,3) and 
 // kind (array, object) property paths return the designated property. 
 
