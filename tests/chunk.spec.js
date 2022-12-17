@@ -17,11 +17,21 @@ describe('chunk', () => {
         it(`On empty array should return empty array`, () => {
             expect(chunk([], 2)).toStrictEqual([])
         })
+        it(`is not chunked by default`, () => {
+            expect(chunk(['a', 'b'])).toStrictEqual(['a', 'b'])
+        })
     })
+
     describe('Test string', () => {
         it(`On string 'abcdefg' and delimeter 3 should return ['a','b','c'],['d','e','f'],['g']]`, () => {
             expect(chunk('abcdefg', 3)).toStrictEqual(['a', 'b', 'c'], ['d', 'e', 'f'], ['g'])
         })
+        it(`is not chunked by default`, () => {
+            expect(chunk('abc')).toStrictEqual([['a', 'b', 'c']])
+        })
+    })
 
+    it(`On empty array should return empty array`, () => {
+        expect(chunk(null, 2)).toStrictEqual([])
     })
 });

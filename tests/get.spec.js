@@ -1,4 +1,5 @@
 import get from '../src/get'
+
 // The get function shall be tested to ensure different levels (1,2,3) and 
 // kind (array, object) property paths return the designated property. 
 
@@ -11,6 +12,7 @@ describe('get', () => {
         arr2: [{ a: 1, b: 2 }],
         nestedObj2: { obj: { a: 'a', b: 'b' }, arr: [1, 2, 3] }
     }
+
     describe('Simple object tests', () => {
         const obj = { a: 1, b: 3 }
         it('Should return value on corresponing key', () => {
@@ -25,6 +27,7 @@ describe('get', () => {
             expect(get(obj, 'c', 'not exists')).toBe('not exists')
         })
     })
+    
     describe('Simple array tests', () => {
         const arrStr = ['a', 'b', 'c']
         const arrNmbr = [1, 2, 3]
@@ -67,6 +70,7 @@ describe('get', () => {
             expect(get(complexObj, 'nestedObj1.nObjArr[0]')).toBe('a')
         })
     })
+
     describe('Complex object testing with inner array and object square-brackets notation', () => {
 
         it('Should return \'a\' on path [\'nestedObj1\',\'a\']', () => {
@@ -94,5 +98,13 @@ describe('get', () => {
         it('Should return \'a\' on path [\'nestedObj1\',\'nObjArr\',\'0\']', () => {
             expect(get(complexObj, ['nestedObj1', 'nObjArr', '0'])).toBe('a')
         })
+    })
+
+    it('returns undefined for null object', () => {
+        expect(get(null, ['nestedObj1', 'a'])).toBe(undefined);
+    })
+
+    it('returns undefined for empty object', () => {
+        expect(get({}, ['nestedObj1', 'a'])).toBe(undefined);
     })
 })
